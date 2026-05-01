@@ -1,0 +1,807 @@
+	<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emmanuel Notarte — Automation Specialist</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#1A73E8',
+            dark: '#111827',
+            accent: '#34A853',
+            surface: '#F9FAFB'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    * { font-family: 'DM Sans', sans-serif; }
+    h1,h2,h3,h4,h5,h6,.heading-font { font-family: 'Poppins', sans-serif; }
+    .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.7s ease forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
+    .skill-pill { transition: transform 0.2s, box-shadow 0.2s; }
+    .skill-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(26,115,232,0.15); }
+    .project-card { transition: transform 0.3s, box-shadow 0.3s; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+    .service-card { transition: transform 0.3s, box-shadow 0.3s; }
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,115,232,0.1); }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#1A73E8; transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+
+    .section-bezel {
+  background: #F8FBFF; /* very light blue tint */
+  border: 1px solid #E6F0FF; /* soft sky border */
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 1px 3px rgba(26, 115, 232, 0.05);
+  transition: all 0.25s ease;
+}
+
+.section-bezel:hover {
+  border-color: #BFDBFE; /* light Google-blue */
+  box-shadow: 0 10px 25px rgba(26, 115, 232, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Reveal animation on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Soft pulse for icons (automation feel) */
+.auto-pulse {
+  animation: autoPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes autoPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto bg-white">
+   <!-- Nav -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+     <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center">
+       <span class="text-white font-bold text-sm heading-font">EN</span>
+      </div><span class="font-semibold text-dark heading-font text-sm tracking-tight">Emmanuel Notarte</span>
+     </div>
+     <div class="hidden md:flex items-center gap-8 text-sm text-gray-600">
+      <a href="#about" class="nav-link hover:text-dark">About</a> <a href="#services" class="nav-link hover:text-dark">Services</a> <a href="#projects" class="nav-link hover:text-dark">Projects</a> <a href="#certifications" class="nav-link hover:text-dark">Certifications</a> <a href="#contact" class="nav-link hover:text-dark">Contact</a>
+     </div><button id="mobile-toggle" class="md:hidden p-2 text-gray-600" aria-label="Toggle menu"> <i data-lucide="menu" style="width:20px;height:20px;"></i> </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3 text-sm text-gray-600">
+     <a href="#about" class="block py-1 hover:text-dark">About</a> <a href="#services" class="block py-1 hover:text-dark">Services</a> <a href="#projects" class="block py-1 hover:text-dark">Projects</a> <a href="#certifications" class="block py-1 hover:text-dark">Certifications</a> <a href="#contact" class="block py-1 hover:text-dark">Contact</a>
+    </div>
+   </nav><!-- Hero -->
+   <header class="pt-32 pb-20 px-6 bg-surface" style="background: linear-gradient(170deg, #F9FAFB 60%, #EBF3FE 100%);">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+     <div class="flex-1 text-center lg:text-left">
+      <div class="fade-up inline-flex items-center gap-2 bg-white border border-blue-100 text-brand text-xs font-medium px-3 py-1.5 rounded-full mb-6">
+       <span class="w-1.5 h-1.5 bg-accent rounded-full inline-block"></span> Available for Projects
+      </div>
+      <h1 id="hero-name" class="fade-up stagger-1 heading-font text-4xl md:text-5xl lg:text-6xl font-800 text-dark leading-tight tracking-tight">Emmanuel Notarte</h1>
+      <p id="hero-title" class="fade-up stagger-2 heading-font text-lg md:text-xl text-brand font-600 mt-3">Automation &amp; Systems Specialist | Google Apps Script Developer</p>
+      <p id="hero-tagline" class="fade-up stagger-3 text-gray-500 mt-4 text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">I build automation systems that remove manual work and streamline business operations.</p>
+      <div class="fade-up stagger-4 mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+       <a href="#contact" id="hero-cta" class="inline-flex items-center justify-center gap-2 bg-brand text-white px-7 py-3.5 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors"> <i data-lucide="zap" style="width:16px;height:16px;"></i> Let's Automate Your Business </a> <a href="#projects" class="inline-flex items-center justify-center gap-2 border border-gray-200 text-dark px-7 py-3.5 rounded-lg font-medium text-sm hover:border-brand hover:text-brand transition-colors"> View Projects <i data-lucide="arrow-right" style="width:16px;height:16px;"></i> </a>
+      </div>
+     </div>
+     <div class="fade-up stagger-5 flex-shrink-0">
+      <div class="relative">
+       <div class="w-56 h-56 md:w-64 md:h-64 rounded-2xl bg-gradient-to-br from-brand to-blue-600 flex items-center justify-center shadow-xl shadow-blue-200/40">
+        <div class="text-center text-white">
+         <i data-lucide="code-2" style="width:48px;height:48px;" class="mx-auto mb-3 opacity-90"></i>
+         <div class="text-3xl font-bold heading-font">
+          2+
+         </div>
+         <div class="text-sm opacity-80 mt-1">
+          Years Automating<br>
+           Business Systems
+         </div>
+        </div>
+       </div>
+       <div class="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-3 flex items-center gap-2 border border-gray-100">
+        <div class="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center"><i data-lucide="check-circle" style="width:16px;height:16px;color:#34A853;"></i>
+        </div><span class="text-xs font-medium text-dark pr-1">5+ Workflows Built</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </header><!-- About -->
+   <section id="about" class="py-20 px-6 bg-white">
+    <div class="max-w-4xl mx-auto">
+     <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center"><i data-lucide="user" style="width:20px;height:20px;color:#1A73E8;"></i>
+      </div>
+      <h2 class="heading-font text-2xl md:text-3xl font-bold text-dark">About Me</h2>
+     </div>
+     <p id="about-text" class="text-gray-600 leading-relaxed text-base md:text-lg">I specialize in building automation systems using Google Apps Script, Google Sheets, and API integrations. I have hands-on experience developing internal tools and workflows for our company, focusing on automating admin processes, data consolidation, and reporting systems. My work is centered on reducing manual tasks, improving accuracy, and streamlining day-to-day operations. I am currently expanding into freelance and virtual assistant work, aiming to help small to medium-sized businesses improve efficiency through practical and reliable automation solutions.</p>
+     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-10">
+
+  <div class="bg-surface rounded-xl p-5 border border-gray-100 reveal auto-pulse">
+    <div class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center mb-3">
+      <i data-lucide="timer"></i>
+    </div>
+    <h3 class="heading-font font-semibold text-dark text-sm">Reduce Manual Work</h3>
+    <p class="text-gray-500 text-xs mt-1">Automate repetitive tasks so your team focuses on what matters.</p>
+  </div>
+
+  <div class="bg-surface rounded-xl p-5 border border-gray-100 reveal auto-pulse">
+    <div class="w-9 h-9 rounded-lg bg-green-50 flex items-center justify-center mb-3">
+      <i data-lucide="trending-up"></i>
+    </div>
+    <h3 class="heading-font font-semibold text-dark text-sm">Improve Efficiency</h3>
+    <p class="text-gray-500 text-xs mt-1">Streamline workflows that save hours every week.</p>
+  </div>
+
+  <div class="bg-surface rounded-xl p-5 border border-gray-100 reveal auto-pulse">
+    <div class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center mb-3">
+      <i data-lucide="settings"></i>
+    </div>
+    <h3 class="heading-font font-semibold text-dark text-sm">Custom Systems</h3>
+    <p class="text-gray-500 text-xs mt-1">Tailored automation built for your business needs.</p>
+  </div>
+
+</div>
+    </div>
+   </section><!-- Services -->
+   <section id="services" class="py-20 px-6 bg-surface">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-white border border-blue-100 text-brand text-xs font-medium px-3 py-1.5 rounded-full mb-4">
+       Services
+      </div>
+      <h2 class="heading-font text-2xl md:text-3xl font-bold text-dark">What I Can Build For You</h2>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="service-card bg-white rounded-xl p-6 border border-gray-100">
+       <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mb-4"><i data-lucide="table" style="width:20px;height:20px;color:#1A73E8;"></i>
+       </div>
+       <h3 class="heading-font font-semibold text-dark">Google Sheets Automation</h3>
+       <p class="text-gray-500 text-sm mt-2 leading-relaxed">Transform spreadsheets into powerful automated systems with custom formulas, scripts, and dashboards.</p>
+      </div>
+      <div class="service-card bg-white rounded-xl p-6 border border-gray-100">
+       <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mb-4"><i data-lucide="code" style="width:20px;height:20px;color:#1A73E8;"></i>
+       </div>
+       <h3 class="heading-font font-semibold text-dark">Apps Script Development</h3>
+       <p class="text-gray-500 text-sm mt-2 leading-relaxed">Custom Google Apps Script solutions that extend Google Workspace capabilities for your business.</p>
+      </div>
+      <div class="service-card bg-white rounded-xl p-6 border border-gray-100">
+       <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center mb-4"><i data-lucide="git-branch" style="width:20px;height:20px;color:#34A853;"></i>
+       </div>
+       <h3 class="heading-font font-semibold text-dark">Workflow Automation</h3>
+       <p class="text-gray-500 text-sm mt-2 leading-relaxed">End-to-end business process automation that eliminates bottlenecks and manual handoffs.</p>
+      </div>
+      <div class="service-card bg-white rounded-xl p-6 border border-gray-100">
+       <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mb-4"><i data-lucide="file-text" style="width:20px;height:20px;color:#1A73E8;"></i>
+       </div>
+       <h3 class="heading-font font-semibold text-dark">Accounting Automation</h3>
+       <p class="text-gray-500 text-sm mt-2 leading-relaxed">Automated reporting, reconciliation, and financial data consolidation for accounting teams.</p>
+      </div>
+      <div class="service-card bg-white rounded-xl p-6 border border-gray-100">
+       <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center mb-4"><i data-lucide="plug" style="width:20px;height:20px;color:#34A853;"></i>
+       </div>
+       <h3 class="heading-font font-semibold text-dark">API Integration</h3>
+       <p class="text-gray-500 text-sm mt-2 leading-relaxed">Connect Google Workspace with external tools and services through custom API integrations.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Projects -->
+   <section id="projects" class="py-20 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-surface border border-gray-100 text-brand text-xs font-medium px-3 py-1.5 rounded-full mb-4">
+       Case Studies
+      </div>
+      <h2 class="heading-font text-2xl md:text-3xl font-bold text-dark">Featured Projects</h2>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+  <!-- Bank Consolidation -->
+  <div class="project-card bg-surface rounded-xl border border-gray-100 overflow-hidden">
+    <div class="h-40 bg-gradient-to-br from-brand to-blue-500 flex items-center justify-center">
+      <i data-lucide="database" style="width:40px;height:40px;color:white;opacity:0.9;"></i>
+    </div>
+
+    <div class="p-6">
+      <div class="text-xs font-medium text-brand mb-2">Financial Systems</div>
+
+      <h3 class="heading-font font-semibold text-dark text-lg">
+        Bank Records & Admin Expenses Consolidation
+      </h3>
+
+      <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+        Automated consolidation of bank transactions and admin expenses into a centralized reconciliation system with checks monitoring.
+      </p>
+
+      <div class="flex flex-wrap gap-1.5 mt-4">
+        <span class="text-xs bg-blue-50 text-brand px-2 py-0.5 rounded">Apps Script</span>
+        <span class="text-xs bg-blue-50 text-brand px-2 py-0.5 rounded">Sheets</span>
+        <span class="text-xs bg-green-50 text-accent px-2 py-0.5 rounded">Automation</span>
+      </div>
+
+      <button onclick="openFlow('Bank Consolidation')"
+        class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand hover:underline">
+        <i data-lucide="play-circle" style="width:16px;height:16px;"></i>
+        How it works
+      </button>
+    </div>
+  </div>
+
+  <!-- Inventory System -->
+  <div class="project-card bg-surface rounded-xl border border-gray-100 overflow-hidden">
+    <div class="h-40 bg-gradient-to-br from-accent to-green-600 flex items-center justify-center">
+      <i data-lucide="box" style="width:40px;height:40px;color:white;opacity:0.9;"></i>
+    </div>
+
+    <div class="p-6">
+      <div class="text-xs font-medium text-accent mb-2">Inventory Tracking</div>
+
+      <h3 class="heading-font font-semibold text-dark text-lg">
+        Publishing Inventory Records System
+      </h3>
+
+      <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+        Fast-tracked inventory publishing system that reduces manual data entry and enables real-time inventory visibility.
+      </p>
+
+      <div class="flex flex-wrap gap-1.5 mt-4">
+        <span class="text-xs bg-green-50 text-accent px-2 py-0.5 rounded">Sheets</span>
+        <span class="text-xs bg-blue-50 text-brand px-2 py-0.5 rounded">Automation</span>
+        <span class="text-xs bg-green-50 text-accent px-2 py-0.5 rounded">Publishing</span>
+      </div>
+
+      <button onclick="openFlow('Inventory System')"
+        class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand hover:underline">
+        <i data-lucide="play-circle" style="width:16px;height:16px;"></i>
+        How it works
+      </button>
+    </div>
+  </div>
+
+  <!-- Communication System -->
+  <div class="project-card bg-surface rounded-xl border border-gray-100 overflow-hidden">
+    <div class="h-40 bg-gradient-to-br from-accent to-green-600 flex items-center justify-center">
+      <i data-lucide="message-circle" style="width:40px;height:40px;color:white;opacity:0.9;"></i>
+    </div>
+
+    <div class="p-6">
+      <div class="text-xs font-medium text-accent mb-2">Communication</div>
+
+      <h3 class="heading-font font-semibold text-dark text-lg">
+        Team Communication Automation
+      </h3>
+
+      <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+        Automated internal reporting and team notification workflow using Google Sheets and Apps Script.
+      </p>
+
+      <div class="flex flex-wrap gap-1.5 mt-4">
+        <span class="text-xs bg-blue-50 text-brand px-2 py-0.5 rounded">Apps Script</span>
+        <span class="text-xs bg-green-50 text-accent px-2 py-0.5 rounded">Notifications</span>
+        <span class="text-xs bg-blue-50 text-brand px-2 py-0.5 rounded">Workflow</span>
+      </div>
+
+      <button onclick="openFlow('Data Pipeline System')"
+        class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand hover:underline">
+        <i data-lucide="play-circle" style="width:16px;height:16px;"></i>
+        How it works
+      </button>
+    </div>
+  </div>
+
+  <!-- Company Event Calendar System -->
+  <div class="project-card bg-surface rounded-xl border border-gray-100 overflow-hidden">
+
+    <div class="h-40 bg-gradient-to-br from-accent to-green-600 flex items-center justify-center">
+      <i data-lucide="calendar" style="width:40px;height:40px;color:white;opacity:0.9;"></i>
+    </div>
+
+    <div class="p-6">
+      <div class="text-xs font-medium text-dark mb-2">
+        Internal Systems
+      </div>
+
+      <h3 class="heading-font font-semibold text-dark text-lg">
+        Company Event Calendar System
+      </h3>
+
+      <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+        Live event scheduling system published to company internal domain with real-time updates and automated notifications for team events.
+      </p>
+
+      <div class="flex flex-wrap gap-1.5 mt-4">
+        <span class="text-xs bg-blue-50 text-brand px-2 py-0.5 rounded">Calendar</span>
+        <span class="text-xs bg-blue-50 text-brand px-2 py-0.5 rounded">Apps Script</span>
+        <span class="text-xs bg-green-50 text-accent px-2 py-0.5 rounded">Publishing</span>
+      </div>
+
+      <button onclick="openFlow('Event Calendar System')"
+        class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand hover:underline">
+        <i data-lucide="play-circle" style="width:16px;height:16px;"></i>
+        How it works
+      </button>
+    </div>
+
+  </div>
+
+</div>
+   </section><!-- Skills -->
+   <section id="skills" class="py-20 px-6 bg-surface">
+    <div class="max-w-6xl mx-auto">
+     <h2 class="heading-font text-2xl md:text-3xl font-bold text-dark mb-12 text-center">Skills &amp; Tools</h2>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12"><!-- Core Skills -->
+      <div>
+       <h3 class="heading-font text-lg font-semibold text-dark mb-6 flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center"><i data-lucide="zap" style="width:16px;height:16px;color:white;"></i>
+        </div> Core Skills</h3>
+       <div class="space-y-3">
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+          <svg viewbox="0 0 24 24" class="w-5 h-5" fill="#1A73E8">
+           <text x="2" y="18" font-size="16" font-weight="bold">
+            JS
+           </text>
+          </svg>
+         </div><span class="text-sm font-medium text-dark">Google Apps Script</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-green-50 flex items-center justify-center flex-shrink-0">
+          <svg viewbox="0 0 24 24" class="w-5 h-5" fill="#34A853">
+           <path d="M3 3h18v18H3z" /><text x="6" y="18" font-size="12" font-weight="bold" fill="white">
+            SS
+           </text>
+          </svg>
+         </div><span class="text-sm font-medium text-dark">Google Sheets Automation</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-yellow-50 flex items-center justify-center flex-shrink-0">
+          <svg viewbox="0 0 24 24" class="w-5 h-5">
+           <path fill="#F59E0B" d="M18 3H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H6V5h12v14z" />
+          </svg>
+         </div><span class="text-sm font-medium text-dark">JavaScript</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-purple-50 flex items-center justify-center flex-shrink-0"><i data-lucide="plug" style="width:16px;height:16px;color:#9333EA;"></i>
+         </div><span class="text-sm font-medium text-dark">API Integration</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-orange-50 flex items-center justify-center flex-shrink-0"><i data-lucide="git-branch" style="width:16px;height:16px;color:#EA580C;"></i>
+         </div><span class="text-sm font-medium text-dark">Workflow Automation</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0"><i data-lucide="database" style="width:16px;height:16px;color:#DC2626;"></i>
+         </div><span class="text-sm font-medium text-dark">Data Consolidation</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-cyan-50 flex items-center justify-center flex-shrink-0"><i data-lucide="calculator" style="width:16px;height:16px;color:#0891B2;"></i>
+         </div><span class="text-sm font-medium text-dark">Accounting Systems</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0"><i data-lucide="layout-grid" style="width:16px;height:16px;color:#4F46E5;"></i>
+         </div><span class="text-sm font-medium text-dark">Google Workspace</span>
+        </div>
+       </div>
+      </div><!-- Tools & Platforms -->
+      <div>
+       <h3 class="heading-font text-lg font-semibold text-dark mb-6 flex items-center gap-2">
+  <span class="text-xl">🧰</span>
+  Tools & Platforms
+</h3>
+       <div class="space-y-3">
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+          <svg viewbox="0 0 24 24" class="w-5 h-5" fill="#4285F4">
+           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+          </svg>
+         </div><span class="text-sm font-medium text-dark">Google Workspace</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0">
+          <svg viewbox="0 0 24 24" class="w-5 h-5" fill="#D83B01">
+           <rect x="3" y="3" width="9" height="9" fill="#D83B01" /><rect x="12" y="3" width="9" height="9" fill="#107C10" /><rect x="3" y="12" width="9" height="9" fill="#FFC000" /><rect x="12" y="12" width="9" height="9" fill="#00B4EF" />
+          </svg>
+         </div><span class="text-sm font-medium text-dark">Microsoft Office</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-purple-50 flex items-center justify-center flex-shrink-0">
+          <svg viewbox="0 0 24 24" class="w-5 h-5" fill="#9333EA">
+           <circle cx="12" cy="12" r="10" fill="#9333EA" opacity="0.2" /><text x="8" y="15" font-size="10" font-weight="bold" fill="#9333EA">
+            C
+           </text>
+          </svg>
+         </div><span class="text-sm font-medium text-dark">Canva</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-yellow-50 flex items-center justify-center flex-shrink-0"><i data-lucide="calendar" style="width:16px;height:16px;color:#F59E0B;"></i>
+         </div><span class="text-sm font-medium text-dark">Google Calendar</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0"><i data-lucide="mail" style="width:16px;height:16px;color:#DC2626;"></i>
+         </div><span class="text-sm font-medium text-dark">Gmail Integration</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0"><i data-lucide="share-2" style="width:16px;height:16px;color:#1A73E8;"></i>
+         </div><span class="text-sm font-medium text-dark">Zapier &amp; REST APIs</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-green-50 flex items-center justify-center flex-shrink-0"><i data-lucide="database" style="width:16px;height:16px;color:#34A853;"></i>
+         </div><span class="text-sm font-medium text-dark">Google Forms</span>
+        </div>
+        <div class="flex items-center gap-3 bg-white border border-gray-100 rounded-lg p-3.5">
+         <div class="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0"><i data-lucide="code" style="width:16px;height:16px;color:#4F46E5;"></i>
+         </div><span class="text-sm font-medium text-dark">Custom Integrations</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Certifications -->
+   <section id="certifications" class="py-20 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-surface border border-gray-100 text-brand text-xs font-medium px-3 py-1.5 rounded-full mb-4">
+       Credentials
+      </div>
+      <h2 class="heading-font text-2xl md:text-3xl font-bold text-dark">Certifications &amp; Achievements</h2>
+     </div>
+     <!-- Certifications Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+  <!-- Certification 1 -->
+  <div class="bg-surface rounded-xl border border-gray-100 p-6 hover:shadow-md transition-shadow">
+    <div class="flex items-start gap-4">
+      <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="award" style="width:24px;height:24px;color:#1A73E8;"></i>
+      </div>
+      <div>
+        <h3 class="heading-font font-semibold text-dark">
+          Automating Team Communication with Google Sheets & Apps Script
+        </h3>
+        <p class="text-xs text-gray-500 mt-1">Coursera</p>
+
+        <a href="https://coursera.org/share/3f0e6a7bfd9db58a614e3e294bdcd5b9"
+           target="_blank"
+           class="text-xs text-brand mt-2 inline-block hover:underline">
+          View Certificate
+        </a>
+
+        <p class="text-sm text-gray-600 mt-2">
+          Learned automation of communication workflows using Google Apps Script.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certification 2 -->
+  <div class="bg-surface rounded-xl border border-gray-100 p-6 hover:shadow-md transition-shadow">
+    <div class="flex items-start gap-4">
+      <div class="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="shield-check" style="width:24px;height:24px;color:#34A853;"></i>
+      </div>
+      <div>
+        <h3 class="heading-font font-semibold text-dark">
+          Integrated Management System (IMS) Training
+        </h3>
+
+        <p class="text-xs text-gray-500 mt-1">Internal Certification</p>
+
+        <a href="https://drive.google.com/file/d/1laaWWvGaSR50GhaqmVfaYqDqB--AC2B2/view?usp=drive_link"
+           target="_blank"
+           class="text-xs text-brand mt-2 inline-block hover:underline">
+          View Certificate
+        </a>
+
+        <p class="text-sm text-gray-600 mt-2">
+          Training focused on ISO-based standards and workflow compliance.
+        </p>
+      </div>
+    </div>
+  </div>
+
+<!-- Certification: TESDA Visual Graphic Design -->
+<div class="bg-surface rounded-xl border border-gray-100 p-6 hover:shadow-md transition-shadow">
+  <div class="flex items-start gap-4">
+    
+    <div class="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0">
+      <i data-lucide="palette" style="width:24px;height:24px;color:#4F46E5;"></i>
+    </div>
+
+    <div>
+  <h3 class="heading-font font-semibold text-dark">
+    Introduction to Visual Graphic Design
+  </h3>
+
+  <p class="text-xs text-gray-500 mt-1">TESDA Training Certificate</p>
+
+  <a href="https://drive.google.com/file/d/1-LdjnOkGvtmNWNTY0PJAS3LAPi0VFe95/view?usp=drive_link"
+     target="_blank"
+     class="text-xs text-brand mt-2 inline-block hover:underline">
+    View Certificate
+  </a>
+
+  <p class="text-sm text-gray-600 mt-2">
+    Foundational training in visual design principles including layout, branding, typography, and digital graphics for marketing and UI materials.
+  </p>
+</div>
+
+  </div>
+</div>
+</div>
+</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact -->
+   <section id="contact" class="py-20 px-6 bg-white">
+    <div class="max-w-2xl mx-auto text-center">
+     <div class="w-14 h-14 rounded-2xl bg-brand flex items-center justify-center mx-auto mb-6">
+      <i data-lucide="mail" style="width:24px;height:24px;color:white;"></i>
+     </div>
+     <h2 class="heading-font text-2xl md:text-3xl font-bold text-dark">Let's Work Together</h2>
+     <p id="contact-message" class="text-gray-500 mt-4 text-base leading-relaxed">Available for freelance automation projects, workflow optimization, and Google Workspace system development.</p>
+     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"><a href="mailto:e.notarte@outlook.com" class="inline-flex items-center gap-2 bg-brand text-white px-8 py-4 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors"> <i data-lucide="send" style="width:16px;height:16px;"></i> Email Me </a> <a id="contact-phone-link" href="tel:" class="inline-flex items-center gap-2 border border-brand text-brand px-8 py-4 rounded-lg font-medium text-sm hover:bg-blue-50 transition-colors"> <i data-lucide="phone" style="width:16px;height:16px;"></i> <span id="phone-display">Call Me</span> </a>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-6 border-t border-gray-100 bg-white">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+     <span>© 2026 Emmanuel Notarte. All rights reserved.</span> <span>Automation &amp; Systems Specialist</span>
+    </div>
+   </footer>
+  </div>
+  <script>
+  // Safe element references
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  // Mobile menu toggle
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('#mobile-menu a').forEach(a => {
+      a.addEventListener('click', () => menu.classList.add('hidden'));
+    });
+  }
+
+  // Smooth scroll (fixed navbar safe offset)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+
+      if (t) {
+        window.scrollTo({
+          top: t.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Project workflow data
+  const flows = {
+    "Bank Consolidation": [
+      "Bank API fetches transactions",
+      "Apps Script cleans and categorizes data",
+      "System consolidates expenses",
+      "Final report is generated automatically"
+    ],
+    "Inventory System": [
+      "Inventory data is collected",
+      "Validation rules are applied",
+      "Stock levels are processed",
+      "Dashboard updates in real-time"
+    ],
+    "Data Pipeline System": [
+      "Multiple sources are pulled",
+      "Data is cleaned and normalized",
+      "Transformation rules applied",
+      "Unified report is generated"
+    ]
+  };
+
+  // Flow viewer (currently alert-based)
+  function openFlow(project) {
+    if (flows[project]) {
+      alert(project + "\n\n" + flows[project].join("\n"));
+    }
+  }
+
+  // Initialize icons
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
+
+  // Scroll reveal animation
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el)); 
+
+  // Element SDK
+  const defaultConfig = {
+    hero_name: 'Emmanuel Notarte',
+    hero_title: 'Business Automation Developer (Google Apps Script)',
+    hero_tagline: 'I build automation systems that remove manual work and streamline business operations.',
+    about_text: 'I specialize in building automation systems using Google Apps Script, Google Sheets, and API integrations. My focus is on automating accounting workflows, data consolidation, reporting systems, and internal business processes — helping small to medium-sized businesses and accounting teams eliminate repetitive manual work and improve operational efficiency through custom-built automation solutions.',
+    contact_message: 'Available for freelance automation projects, workflow optimization, and Google Workspace system development.',
+    contact_phone: '+63 961 369 8158',
+    cta_text: 'Hire Me / Get in Touch',
+    background_color: '#FFFFFF',
+    surface_color: '#F9FAFB',
+    text_color: '#111827',
+    primary_color: '#1A73E8',
+    accent_color: '#34A853',
+    font_family: 'Poppins',
+    font_size: 16
+  };
+
+  function applyConfig(config) {
+    const c = key => config[key] || defaultConfig[key];
+    document.getElementById('hero-name').textContent = c('hero_name');
+    document.getElementById('hero-title').textContent = c('hero_title');
+    document.getElementById('hero-tagline').textContent = c('hero_tagline');
+    document.getElementById('about-text').textContent = c('about_text');
+    document.getElementById('contact-message').textContent = c('contact_message');
+    
+    const phone = c('contact_phone');
+    document.getElementById('contact-phone-link').href = `tel:${phone.replace(/\D/g, '')}`;
+    document.getElementById('phone-display').textContent = phone;
+
+    const bg = c('background_color');
+    const sf = c('surface_color');
+    const tx = c('text_color');
+    const pr = c('primary_color');
+    const ac = c('accent_color');
+    const ff = c('font_family');
+    const fs = c('font_size');
+
+    document.documentElement.style.setProperty('--bg', bg);
+    // Apply colors
+    document.querySelectorAll('.bg-white').forEach(el => el.style.backgroundColor = bg);
+    document.querySelectorAll('.bg-surface, .bg-surface').forEach(el => el.style.backgroundColor = sf);
+    document.querySelectorAll('.text-dark').forEach(el => el.style.color = tx);
+    document.querySelectorAll('.text-brand').forEach(el => el.style.color = pr);
+    document.querySelectorAll('.bg-brand').forEach(el => el.style.backgroundColor = pr);
+    document.querySelectorAll('.text-accent').forEach(el => el.style.color = ac);
+
+    // Font
+    const stack = `${ff}, 'DM Sans', sans-serif`;
+    document.querySelectorAll('.heading-font, h1, h2, h3').forEach(el => el.style.fontFamily = stack);
+    document.body.style.fontFamily = `'DM Sans', ${ff}, sans-serif`;
+
+    // Font size
+    const base = fs || 16;
+    document.getElementById('hero-name').style.fontSize = `${base * 3}px`;
+    document.getElementById('hero-title').style.fontSize = `${base * 1.25}px`;
+    document.getElementById('hero-tagline').style.fontSize = `${base * 1.1}px`;
+    document.getElementById('about-text').style.fontSize = `${base}px`;
+    document.getElementById('contact-message').style.fontSize = `${base}px`;
+  }
+
+// existing code above...
+
+const flows = {
+  "Bank Consolidation": [
+    "Bank API fetches transactions",
+    "Apps Script cleans and categorizes data",
+    "System consolidates expenses",
+    "Final report is generated automatically"
+  ],
+  "Inventory System": [
+    "Inventory data is collected",
+    "Validation rules are applied",
+    "Stock levels are processed",
+    "Dashboard updates in real-time"
+  ],
+  "Data Pipeline System": [
+    "Multiple sources are pulled",
+    "Data is cleaned and normalized",
+    "Transformation rules applied",
+    "Unified report is generated"
+  ]
+};
+
+function openFlow(project) {
+  alert(project + "\n\n" + flows[project].join("\n"));
+}
+
+lucide.createIcons();
+
+  // Scroll reveal animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+ <script>
+  // Project workflow data
+  const flows = {
+  "Bank Consolidation": [
+    "Bank API fetches transactions",
+    "Apps Script cleans data",
+    "System consolidates expenses",
+    "Report is generated automatically"
+  ],
+  "Inventory System": [
+    "Inventory data collected",
+    "Validation rules applied",
+    "Stock processed",
+    "Dashboard updates in real-time"
+  ],
+  "Data Pipeline System": [
+    "Multiple sources pulled",
+    "Data cleaned",
+    "Transformation applied",
+    "Unified report generated"
+  ],
+  "Event Calendar System": [
+    "Events are submitted via internal form or sheet",
+    "Apps Script validates and formats event data",
+    "Calendar entries are automatically created/updated",
+    "Notifications are sent to team members in real-time"
+  ]
+};
+
+  // Optional workflow viewer
+  function openFlow(project) {
+    if (flows[project]) {
+      alert(project + "\n\n" + flows[project].join("\n"));
+    }
+  }
+
+  // Initialize icons safely
+  window.addEventListener("DOMContentLoaded", () => {
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
+  });
+</script>
+ 
+ 
+ 
+ </body>
+</html>
+
