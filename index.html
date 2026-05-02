@@ -578,9 +578,11 @@
       </div>
      </div>
     </div>
-   </section><!-- Contact -->
-   <section id="contact" class="py-20 px-6 bg-[#F0F6FF]">
-  <div class="max-w-2xl mx-auto bg-[#E3F0FF] border border-brand/30 rounded-2xl p-10 text-center shadow-md">
+   </section>
+	 
+	 <!-- Contact -->
+	   <section id="contact" class="py-20 px-6 bg-[#F0F6FF]">
+  <div class="max-w-2xl mx-auto bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl p-10 shadow-md">
 
     <!-- Icon -->
     <div class="w-14 h-14 rounded-2xl bg-brand flex items-center justify-center mx-auto mb-6 shadow-md">
@@ -588,32 +590,40 @@
     </div>
 
     <!-- Title -->
-    <h2 class="heading-font text-2xl md:text-3xl font-bold text-dark">
+    <h2 class="heading-font text-2xl md:text-3xl font-bold text-dark text-center">
       Let's Work Together
     </h2>
 
     <!-- Text -->
-    <p class="text-gray-600 mt-4 text-base leading-relaxed">
+    <p class="text-gray-600 mt-4 text-base leading-relaxed text-center">
       Available for freelance automation projects, workflow optimization, and Google Workspace system development.
     </p>
 
-    <!-- Buttons -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+    <!-- Contact Table -->
+    <div class="mt-8 overflow-hidden rounded-xl border border-gray-200">
+      <table class="w-full text-sm text-left">
+        <tbody class="divide-y divide-gray-200">
 
-      <!-- Email Button -->
-      <a href="mailto:e.notarte@outlook.com"
-         class="inline-flex items-center gap-2 bg-brand text-white px-8 py-4 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors shadow-md">
-        <i data-lucide="send" style="width:16px;height:16px;"></i>
-        Email Me
-      </a>
+          <tr class="bg-white/40">
+            <td class="px-4 py-3 font-medium text-gray-700">Email</td>
+            <td class="px-4 py-3 text-gray-600">
+              <a href="mailto:e.notarte@outlook.com" class="text-brand hover:underline">
+                e.notarte@outlook.com
+              </a>
+            </td>
+          </tr>
 
-      <!-- Call Button -->
-      <a href="tel:"
-         class="inline-flex items-center gap-2 border border-brand text-brand px-8 py-4 rounded-lg font-medium text-sm hover:bg-blue-100 transition-colors">
-        <i data-lucide="phone" style="width:16px;height:16px;"></i>
-        Call Me
-      </a>
+          <tr class="bg-white/20">
+            <td class="px-4 py-3 font-medium text-gray-700">Phone</td>
+            <td class="px-4 py-3 text-gray-600">
+              <a href="tel:" class="text-brand hover:underline">
+                Add your number here
+              </a>
+            </td>
+          </tr>
 
+        </tbody>
+      </table>
     </div>
 
   </div>
