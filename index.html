@@ -145,7 +145,7 @@
        </div>
        <div class="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-3 flex items-center gap-2 border border-gray-100">
         <div class="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center"><i data-lucide="check-circle" style="width:16px;height:16px;color:#34A853;"></i>
-        </div><span class="text-xs font-medium text-dark pr-1">5+ Workflows Built</span>
+        </div><span class="text-xs font-medium text-dark pr-1">6+ Workflows Built</span>
        </div>
       </div>
      </div>
@@ -764,4 +764,18 @@ window.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
   }
 });
+
+	  <script>
+  function openFlow(systemName) {
+    alert("Workflow: " + systemName + "\n\nThis will later open your full workflow details or modal view.");
+  }
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  window.addEventListener("DOMContentLoaded", () => {
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
+  });
+</script>
 </script>
