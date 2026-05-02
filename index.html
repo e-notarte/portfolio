@@ -743,27 +743,38 @@ const flows = {
   ]
 };
 
-function openFlow(project) {
-  if (flows[project]) {
-    alert(project + "\n\n" + flows[project].join("\n"));
-  }
-}
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
+<script>
+  // Open workflow modal/alert
+  function openFlow(project) {
+    if (typeof flows !== "undefined" && flows[project]) {
+      alert(project + "\n\n" + flows[project].join("\n"));
+    } else {
+      alert(project + "\n\nWorkflow details not yet defined.");
     }
-  });
-});
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-window.addEventListener("DOMContentLoaded", () => {
-  if (typeof lucide !== "undefined") {
-    lucide.createIcons();
   }
-});
 
-	 
+  // Intersection Observer (safe initialization)
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  });
+
+  // Wait until DOM is fully loaded BEFORE querying elements
+  window.addEventListener("DOMContentLoaded", () => {
+
+    // Reveal animation
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Lucide icons (IMPORTANT: must run after DOM is ready)
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
+
+  });
+
 </script>
