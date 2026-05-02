@@ -86,17 +86,14 @@
   box-shadow: 0 6px 18px rgba(26, 115, 232, 0.15);
 }
 
-	  .service-card {
-  position: relative;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+	  .service-card-active {
+  background-color: #EAF3FF;
+  border-color: #1A73E8;
 
-/* existing hover lift + new bezel glow combined */
-.service-card:hover {
-  transform: translateY(-3px);
+  /* 👇 THIS is your persistent bezel */
   box-shadow:
     0 0 0 2px rgba(26, 115, 232, 0.25),
-    0 12px 28px rgba(26, 115, 232, 0.12);
+    0 8px 20px rgba(26, 115, 232, 0.12);
 }
   </style>
   <style>body { box-sizing: border-box; }</style>
