@@ -88,13 +88,15 @@
 
 	  .service-card {
   position: relative;
-  transition: all 0.25s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* soft bezel glow on hover */
+/* existing hover lift + new bezel glow combined */
 .service-card:hover {
-  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.25),
-              0 12px 28px rgba(26, 115, 232, 0.12);
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 2px rgba(26, 115, 232, 0.25),
+    0 12px 28px rgba(26, 115, 232, 0.12);
 }
   </style>
   <style>body { box-sizing: border-box; }</style>
