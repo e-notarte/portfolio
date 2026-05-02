@@ -691,23 +691,36 @@
      <span>© 2026 Emmanuel Notarte. All rights reserved.</span> <span>Automation &amp; Systems Specialist</span>
     </div>
    </footer>
-  </div>
+  </div>	
+
+	 
   <script>
+/* =========================
+   Mobile Menu Toggle
+========================= */
 const toggle = document.getElementById('mobile-toggle');
 const menu = document.getElementById('mobile-menu');
 
 if (toggle && menu) {
-  toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
-  document.querySelectorAll('#mobile-menu a').forEach(a =>
-    a.addEventListener('click', () => menu.classList.add('hidden'))
-  );
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+    });
+  });
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
+/* =========================
+   Smooth Scroll
+========================= */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
     if (target) {
+      e.preventDefault();
       window.scrollTo({
         top: target.offsetTop - 80,
         behavior: 'smooth'
@@ -716,65 +729,80 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+/* =========================
+   Project Workflow Data
+========================= */
 const flows = {
-  "Bank Consolidation": [
-    "Fetch bank transactions",
-    "Clean & categorize data",
-    "Consolidate expenses",
-    "Generate final report"
+  "Financial Systems": [
+    "Collect financial records from multiple sources",
+    "Consolidate bank transactions & expense entries",
+    "Automated reconciliation of accounts",
+    "Generate financial summary reports"
   ],
-  "Inventory System": [
-    "Collect inventory data",
-    "Apply validation rules",
-    "Process stock levels",
-    "Update dashboard in real-time"
+  "Asset System": [
+    "Track company assets per department",
+    "Monitor inventory & supplies usage",
+    "Update accountability records",
+    "Generate real-time asset dashboard"
   ],
-  "Data Pipeline System": [
-    "Pull multiple data sources",
-    "Clean & normalize data",
-    "Apply transformations",
-    "Generate unified report"
+  "Vehicle System": [
+    "Log vehicle usage and assignments",
+    "Track PMS schedules and repairs",
+    "Consolidate official receipts",
+    "Maintain vehicle history records"
   ],
-  "Event Calendar System": [
-    "Collect event inputs",
-    "Validate & format data",
-    "Create calendar entries",
-    "Send notifications"
+  "Compliance System": [
+    "Capture building requests via forms",
+    "Route approvals automatically",
+    "Send notifications to requestors",
+    "Track KPI compliance metrics"
+  ],
+  "Events System": [
+    "Collect event schedules",
+    "Auto-publish to calendar",
+    "Sync updates in real-time",
+    "Notify departments automatically"
+  ],
+  "Document System": [
+    "Pull data from Sheets",
+    "Auto-fill SOA templates",
+    "Generate PDF documents",
+    "Store & archive outputs"
   ]
 };
 
-<script>
-  // Open workflow modal/alert
-  function openFlow(project) {
-    if (typeof flows !== "undefined" && flows[project]) {
-      alert(project + "\n\n" + flows[project].join("\n"));
-    } else {
-      alert(project + "\n\nWorkflow details not yet defined.");
-    }
+/* =========================
+   Open Workflow Popup
+========================= */
+function openFlow(project) {
+  if (flows[project]) {
+    alert(
+      project + "\n\n" + flows[project].join("\n")
+    );
+  } else {
+    alert(project + "\n\nWorkflow details not yet defined.");
   }
+}
 
-  // Intersection Observer (safe initialization)
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  });
-
-  // Wait until DOM is fully loaded BEFORE querying elements
-  window.addEventListener("DOMContentLoaded", () => {
-
-    // Reveal animation
-    document.querySelectorAll('.reveal').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Lucide icons (IMPORTANT: must run after DOM is ready)
-    if (typeof lucide !== "undefined") {
-      lucide.createIcons();
+/* =========================
+   Scroll Reveal Animation
+========================= */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
     }
+  });
+});
 
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
   });
 
+  /* Lucide Icons Init */
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
+});
 </script>
