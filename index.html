@@ -310,7 +310,7 @@
         <span class="text-xs bg-blue-50 text-brand px-2 py-0.5 rounded">Workflow</span>
       </div>
 
-      <button onclick="openFlow('Data Pipeline System')"
+      <button onclick="openFlow('Team Communication')">
         class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand hover:underline">
         <i data-lucide="play-circle" style="width:16px;height:16px;"></i>
         How it works
@@ -580,172 +580,62 @@
    </footer>
   </div>
   <script>
-  // Safe element references
-  const toggle = document.getElementById('mobile-toggle');
-  const menu = document.getElementById('mobile-menu');
+const toggle = document.getElementById('mobile-toggle');
+const menu = document.getElementById('mobile-menu');
 
-  // Mobile menu toggle
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
+if (toggle && menu) {
+  toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+  document.querySelectorAll('#mobile-menu a').forEach(a =>
+    a.addEventListener('click', () => menu.classList.add('hidden'))
+  );
+}
 
-    document.querySelectorAll('#mobile-menu a').forEach(a => {
-      a.addEventListener('click', () => menu.classList.add('hidden'));
-    });
-  }
-
-  // Smooth scroll (fixed navbar safe offset)
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const t = document.querySelector(a.getAttribute('href'));
-
-      if (t) {
-        window.scrollTo({
-          top: t.offsetTop - 80,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  // Project workflow data
-  const flows = {
-    "Bank Consolidation": [
-      "Bank API fetches transactions",
-      "Apps Script cleans and categorizes data",
-      "System consolidates expenses",
-      "Final report is generated automatically"
-    ],
-    "Inventory System": [
-      "Inventory data is collected",
-      "Validation rules are applied",
-      "Stock levels are processed",
-      "Dashboard updates in real-time"
-    ],
-    "Data Pipeline System": [
-      "Multiple sources are pulled",
-      "Data is cleaned and normalized",
-      "Transformation rules applied",
-      "Unified report is generated"
-    ]
-  };
-
-  // Flow viewer (currently alert-based)
-  function openFlow(project) {
-    if (flows[project]) {
-      alert(project + "\n\n" + flows[project].join("\n"));
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop - 80,
+        behavior: 'smooth'
+      });
     }
-  }
-
-  // Initialize icons
-  if (typeof lucide !== "undefined") {
-    lucide.createIcons();
-  }
-
-  // Scroll reveal animation
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
   });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el)); 
-
-  // Element SDK
-  const defaultConfig = {
-    hero_name: 'Emmanuel Notarte',
-    hero_title: 'Business Automation Developer (Google Apps Script)',
-    hero_tagline: 'I build automation systems that remove manual work and streamline business operations.',
-    about_text: 'I specialize in building automation systems using Google Apps Script, Google Sheets, and API integrations. My focus is on automating accounting workflows, data consolidation, reporting systems, and internal business processes — helping small to medium-sized businesses and accounting teams eliminate repetitive manual work and improve operational efficiency through custom-built automation solutions.',
-    contact_message: 'Available for freelance automation projects, workflow optimization, and Google Workspace system development.',
-    contact_phone: '+63 961 369 8158',
-    cta_text: 'Hire Me / Get in Touch',
-    background_color: '#FFFFFF',
-    surface_color: '#F9FAFB',
-    text_color: '#111827',
-    primary_color: '#1A73E8',
-    accent_color: '#34A853',
-    font_family: 'Poppins',
-    font_size: 16
-  };
-
-  function applyConfig(config) {
-    const c = key => config[key] || defaultConfig[key];
-    document.getElementById('hero-name').textContent = c('hero_name');
-    document.getElementById('hero-title').textContent = c('hero_title');
-    document.getElementById('hero-tagline').textContent = c('hero_tagline');
-    document.getElementById('about-text').textContent = c('about_text');
-    document.getElementById('contact-message').textContent = c('contact_message');
-    
-    const phone = c('contact_phone');
-    document.getElementById('contact-phone-link').href = `tel:${phone.replace(/\D/g, '')}`;
-    document.getElementById('phone-display').textContent = phone;
-
-    const bg = c('background_color');
-    const sf = c('surface_color');
-    const tx = c('text_color');
-    const pr = c('primary_color');
-    const ac = c('accent_color');
-    const ff = c('font_family');
-    const fs = c('font_size');
-
-    document.documentElement.style.setProperty('--bg', bg);
-    // Apply colors
-    document.querySelectorAll('.bg-white').forEach(el => el.style.backgroundColor = bg);
-    document.querySelectorAll('.bg-surface, .bg-surface').forEach(el => el.style.backgroundColor = sf);
-    document.querySelectorAll('.text-dark').forEach(el => el.style.color = tx);
-    document.querySelectorAll('.text-brand').forEach(el => el.style.color = pr);
-    document.querySelectorAll('.bg-brand').forEach(el => el.style.backgroundColor = pr);
-    document.querySelectorAll('.text-accent').forEach(el => el.style.color = ac);
-
-    // Font
-    const stack = `${ff}, 'DM Sans', sans-serif`;
-    document.querySelectorAll('.heading-font, h1, h2, h3').forEach(el => el.style.fontFamily = stack);
-    document.body.style.fontFamily = `'DM Sans', ${ff}, sans-serif`;
-
-    // Font size
-    const base = fs || 16;
-    document.getElementById('hero-name').style.fontSize = `${base * 3}px`;
-    document.getElementById('hero-title').style.fontSize = `${base * 1.25}px`;
-    document.getElementById('hero-tagline').style.fontSize = `${base * 1.1}px`;
-    document.getElementById('about-text').style.fontSize = `${base}px`;
-    document.getElementById('contact-message').style.fontSize = `${base}px`;
-  }
-
-// existing code above...
+});
 
 const flows = {
   "Bank Consolidation": [
-    "Bank API fetches transactions",
-    "Apps Script cleans and categorizes data",
-    "System consolidates expenses",
-    "Final report is generated automatically"
+    "Fetch bank transactions",
+    "Clean & categorize data",
+    "Consolidate expenses",
+    "Generate final report"
   ],
   "Inventory System": [
-    "Inventory data is collected",
-    "Validation rules are applied",
-    "Stock levels are processed",
-    "Dashboard updates in real-time"
+    "Collect inventory data",
+    "Apply validation rules",
+    "Process stock levels",
+    "Update dashboard in real-time"
   ],
   "Data Pipeline System": [
-    "Multiple sources are pulled",
-    "Data is cleaned and normalized",
-    "Transformation rules applied",
-    "Unified report is generated"
+    "Pull multiple data sources",
+    "Clean & normalize data",
+    "Apply transformations",
+    "Generate unified report"
+  ],
+  "Event Calendar System": [
+    "Collect event inputs",
+    "Validate & format data",
+    "Create calendar entries",
+    "Send notifications"
   ]
 };
 
 function openFlow(project) {
-  alert(project + "\n\n" + flows[project].join("\n"));
+  if (flows[project]) {
+    alert(project + "\n\n" + flows[project].join("\n"));
+  }
 }
 
-lucide.createIcons();
-
-  // Scroll reveal animation
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -755,53 +645,10 @@ const observer = new IntersectionObserver(entries => {
 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
- <script>
-  // Project workflow data
-  const flows = {
-  "Bank Consolidation": [
-    "Bank API fetches transactions",
-    "Apps Script cleans data",
-    "System consolidates expenses",
-    "Report is generated automatically"
-  ],
-  "Inventory System": [
-    "Inventory data collected",
-    "Validation rules applied",
-    "Stock processed",
-    "Dashboard updates in real-time"
-  ],
-  "Data Pipeline System": [
-    "Multiple sources pulled",
-    "Data cleaned",
-    "Transformation applied",
-    "Unified report generated"
-  ],
-  "Event Calendar System": [
-    "Events are submitted via internal form or sheet",
-    "Apps Script validates and formats event data",
-    "Calendar entries are automatically created/updated",
-    "Notifications are sent to team members in real-time"
-  ]
-};
 
-  // Optional workflow viewer
-  function openFlow(project) {
-    if (flows[project]) {
-      alert(project + "\n\n" + flows[project].join("\n"));
-    }
+window.addEventListener("DOMContentLoaded", () => {
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
   }
-
-  // Initialize icons safely
-  window.addEventListener("DOMContentLoaded", () => {
-    if (typeof lucide !== "undefined") {
-      lucide.createIcons();
-    }
-  });
+});
 </script>
- 
- 
- 
- </body>
-</html>
-
