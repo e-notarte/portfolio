@@ -1018,6 +1018,21 @@
     </div>
   </section>
 
+  <!-- Workflow Modal -->
+  <div id="workflow-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-dark/40 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto transform scale-95 transition-transform duration-300" id="workflow-modal-content">
+      <div class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-gray-100 px-6 py-5 flex items-center justify-between z-10">
+        <h3 id="modal-title" class="heading-font text-xl font-bold text-dark">Workflow</h3>
+        <button onclick="closeModal()" class="p-2 text-gray-400 hover:text-dark hover:bg-gray-100 rounded-full transition-colors">
+          <i data-lucide="x" style="width:20px;height:20px;"></i>
+        </button>
+      </div>
+      <div class="p-8" id="modal-body">
+        <!-- Steps will be injected here -->
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="py-8 px-6 border-t border-gray-100 bg-white">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
@@ -1079,10 +1094,12 @@
         "Generate real-time asset dashboard"
       ],
       "Vehicle System": [
-        "Log vehicle usage and assignments",
-        "Track PMS schedules and repairs",
-        "Consolidate official receipts",
-        "Maintain vehicle history records"
+        { icon: "file-text", title: "Online Request", text: "Requestor submits a vehicle request through an online form." },
+        { icon: "clipboard-list", title: "Dispatch Board", text: "The request is sent directly to the vehicle request and dispatch board." },
+        { icon: "calendar-search", title: "Dispatcher Assignment", text: "The dispatcher assigns a driver and vehicle (dispatcher is able to view the fleet utilization calendar to check availability)." },
+        { icon: "shield-check", title: "Status Approval", text: "Sent to the approver for status approval. The approver will select whether it is approved or rejected (the approver shall also see the fleet utilization calendar)." },
+        { icon: "mail", title: "Email Notification", text: "After approval or rejection, the system automatically informs the requestor through email." },
+        { icon: "ticket", title: "Trip Ticket & Calendar Update", text: "A trip ticket will be issued 30 minutes before departure, and the calendar updates accordingly." }
       ],
       "Compliance System": [
         "Capture building requests via forms",
@@ -1101,20 +1118,88 @@
         "Auto-fill SOA templates",
         "Generate PDF documents",
         "Store & archive outputs"
+      ],
+      "Liaison System": [
+        "Receive liaison/messengerial tasks",
+        "Log and prioritize request",
+        "Assign to personnel",
+        "Monitor KPI and completion"
+      ],
+      "Recruitment System": [
+        "Receive online application data sheet",
+        "Screen and schedule interviews",
+        "Process pre-employment requirements",
+        "Complete employee onboarding"
+      ],
+      "Payroll System": [
+        "Collect daily time records",
+        "Monitor and track overtime and leave",
+        "Process payroll calculations",
+        "Generate payslips and reports"
+      ],
+      "Feedback System": [
+        "Send customer feedback survey",
+        "Collect ratings for admin services",
+        "Analyze customer satisfaction data",
+        "Generate quality improvement reports"
       ]
     };
 
     /* =========================
        Open Workflow Popup
     ========================= */
+    const modal = document.getElementById('workflow-modal');
+    const modalContent = document.getElementById('workflow-modal-content');
+
     function openFlow(project) {
-      if (flows[project]) {
-        alert(
-          project + "\n\n" + flows[project].join("\n")
-        );
+      document.getElementById('modal-title').textContent = project + " Workflow";
+      const body = document.getElementById('modal-body');
+      body.innerHTML = '';
+      
+      const steps = flows[project];
+      if (!steps) {
+        body.innerHTML = '<p class="text-gray-500">Workflow details not yet defined.</p>';
       } else {
-        alert(project + "\n\nWorkflow details not yet defined.");
+        const container = document.createElement('div');
+        container.className = 'relative border-l-[3px] border-blue-100 ml-4 space-y-8 py-2';
+        
+        steps.forEach((step, index) => {
+          const isObject = typeof step === 'object';
+          const title = isObject ? step.title : `Step ${index + 1}`;
+          const text = isObject ? step.text : step;
+          const icon = isObject ? step.icon : 'check-circle-2';
+          
+          container.innerHTML += `
+            <div class="relative pl-8">
+              <div class="absolute -left-[19px] top-0 bg-white border-[3px] border-brand text-brand w-[34px] h-[34px] rounded-full flex items-center justify-center shadow-sm">
+                <i data-lucide="${icon}" style="width:16px;height:16px; stroke-width: 2.5;"></i>
+              </div>
+              <h4 class="heading-font font-bold text-dark text-lg leading-tight mb-1">${title}</h4>
+              <p class="text-gray-500 text-sm leading-relaxed">${text}</p>
+            </div>
+          `;
+        });
+        body.appendChild(container);
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
       }
+      
+      modal.classList.remove('hidden');
+      // trigger reflow
+      void modal.offsetWidth;
+      modal.classList.add('flex');
+      modal.classList.remove('opacity-0');
+      modalContent.classList.remove('scale-95');
+    }
+
+    function closeModal() {
+      modal.classList.add('opacity-0');
+      modalContent.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 300);
     }
 
     /* =========================
